@@ -80,6 +80,7 @@ const mostBlogs = blogs => {
   // count the number of blogs with the same author
   let authorBlogCount = {};
   blogs.forEach(blog => {
+    // Using the authors names as keys allows simple existence check
     if (blog.author in authorBlogCount) {
       authorBlogCount[blog.author].blogs += 1;
     } else {
@@ -99,9 +100,24 @@ const mostBlogs = blogs => {
 
 const mostLikes = blogs => {
   // split the blog array into groups by author
-  // add up the number of likes of each group into group totals
+  let authorLikeCount = {};
+  blogs.forEach(blog => {
+    // Using the authors names as keys allows simple existence check
+    if (blog.author in authorLikeCount) {
+      authorLikeCount[blog.author].likes += blog.likes;
+    } else {
+      authorLikeCount[blog.author] = { author: blog.author, likes: blog.likes };
+    }
+  });
+
   // compare group totals and return the highest
-  console.log("Hi");
+  let topAuthor = { likes: 0 };
+  for (key in authorLikeCount) {
+    if (authorLikeCount[key].likes > topAuthor.likes) {
+      topAuthor = authorLikeCount[key];
+    }
+  }
+  return topAuthor;
 };
 
 module.exports = {

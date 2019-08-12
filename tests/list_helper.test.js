@@ -198,11 +198,69 @@ describe("most blogs", () => {
 
   test("Author with the most blogs", () => {
     const result = listHelper.mostBlogs(manyBlogList);
-    console.log('vars: ', manyBlogList, result);
-    
     const expected = {
       author: "Edsger W. Dijkstra",
       blogs: 3
+    };
+    expect(result).toEqual(expected);
+  });
+});
+
+// Test for author with the most blog posts
+describe("most likes", () => {
+  const manyBlogList = [
+    {
+      _id: "5a422aa71b54a676234d1755",
+      title: "First post",
+      author: "Edsger W. Dijkstra",
+      url:
+        "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+      likes: 10,
+      __v: 0
+    },
+    {
+      _id: "5a422aa71b54a676234d17f7",
+      title: "Other post",
+      author: "Robert C. Martin",
+      url:
+        "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+      likes: 5,
+      __v: 0
+    },
+    {
+      _id: "5a422aa71b54a676234d17f8",
+      title: "I hate Nate",
+      author: "Edsger W. Dijkstra",
+      url:
+        "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+      likes: 15,
+      __v: 0
+    },
+    {
+      _id: "5a422aa71b54a676234d17a7",
+      title: "I like turtles",
+      author: "Robert C. Martin",
+      url:
+        "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+      likes: 5,
+      __v: 0
+    },
+    {
+      _id: "5a422aa71b54a676234d17d8",
+      title: "Go To Null Statement",
+      author: "Edsger W. Dijkstra",
+      url:
+        "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+      likes: 15,
+      __v: 0
+    }
+  ];
+
+  test("Author with the most likes", () => {
+    const result = listHelper.mostLikes(manyBlogList);
+    const expected = {
+      author: "Edsger W. Dijkstra",
+      likes: 40
     };
     expect(result).toEqual(expected);
   });
