@@ -89,9 +89,6 @@ const mostBlogs = blogs => {
 
   // find and return the author with the most blogs
   let topAuthor = { blogs: 0 };
-
-  console.log(authorBlogCount);
-
   for (key in authorBlogCount) {
     if (authorBlogCount[key].blogs > topAuthor.blogs) {
       topAuthor = authorBlogCount[key];
@@ -99,8 +96,6 @@ const mostBlogs = blogs => {
   }
   return topAuthor;
 };
-
-console.log("blogs: ", mostBlogs(manyBlogList));
 
 const mostLikes = blogs => {
   // split the blog array into groups by author
@@ -112,5 +107,7 @@ const mostLikes = blogs => {
 module.exports = {
   dummy,
   totalLikes,
-  favoriteBlog
+  favoriteBlog,
+  mostBlogs,
+  mostLikes
 };
