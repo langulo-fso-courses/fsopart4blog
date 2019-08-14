@@ -1,12 +1,14 @@
 // Various custom middlewares for the express app
-// Logging
+const logger = require('./logger') // Logging
+
 const requestLogger = (req, res, next) => {
+  // logging delegated to logger module
   const now = new Date();
-  console.log(`--- REQUEST @ ${now} ---`);
-  console.log("Method:  ", req.method);
-  console.log("Path:  ", req.path);
-  console.log("Body:  ", req.body);
-  console.log("--- END ----");
+  logger.info(`--- REQUEST @ ${now} ---`);
+  logger.info("Method:  ", req.method);
+  logger.info("Path:  ", req.path);
+  logger.info("Body:  ", req.body);
+  logger.info("--- END ----");
   next();
 };
 
@@ -18,7 +20,7 @@ const unknownEndpoint = (req, res) => {
 // Error handling (bad requests)
 const errorHandler = (error, req, res, next) => {
   // TODO: Adjust for blog mongoose validations
-  console.error(error.message);
+  logger.error(error.message);  // logging delegated to logger module
 
   if (error.name === "CastError" && error.kind === "ObjectId") {
     return req.status(400).send({ error: "malformatted id" });
