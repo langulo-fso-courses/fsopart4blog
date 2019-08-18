@@ -19,13 +19,12 @@ const unknownEndpoint = (req, res) => {
 
 // Error handling (bad requests)
 const errorHandler = (error, req, res, next) => {
-  // TODO: Adjust for blog mongoose validations
   logger.error(error.message);  // logging delegated to logger module
 
   if (error.name === "CastError" && error.kind === "ObjectId") {
-    return req.status(400).send({ error: "malformatted id" });
+    return res.status(400).send({ error: "malformatted id" });
   } else if (error.name === "ValidationError") {
-    return req.status(400).json({ error: error.message });
+    return res.status(400).json({ error: error.message });
   }
 
   next(error);

@@ -2,8 +2,16 @@
 const mongoose = require("mongoose");
 
 const blogSchema = mongoose.Schema({
-  title: String,
-  author: String,
+  title: {
+    type: String,
+    minlength: [5, "title is below 5 chars"],
+    maxlength: [100, "title exceeds 100 chars"]
+  },
+  author: {
+    type: String,
+    minlength: [5, "author is below 5 chars"],
+    maxlength: [100, "author exceeds 100 chars"]
+  },
   url: String,
   likes: Number
 });

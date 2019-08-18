@@ -7,6 +7,7 @@
     "start": "cross-env NODE_ENV=production node index",
     "watch": "cross-env NODE_ENV=development nodemon index",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand"
+    
   },
   "keywords": [
     "blog"
